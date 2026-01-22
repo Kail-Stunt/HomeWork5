@@ -60,19 +60,17 @@ public class Main {
         Переменную года назовите year, в которую можно подставить значение интересующего нас года. Например, 2021.
         Программа должна определять, високосный год или нет, и выводить соответствующее сообщение: « …. год является високосным» или «... год не является високосным».
         Небольшая справка: високосным является каждый четвертый год, но не является каждый сотый. Также високосным является каждый четырехсотый год. Год должен быть больше, чем 1584 (в котором был введен високосный год).*/
-        System.out.print("Задача 3 \nПожалуйcтва, введите интересующий вас год: ");
+        System.out.print("Задача 3 \nПожалуйcтва, введите интересующий вас год больше 1584: ");
         int year = scanner.nextInt();
-        if (year >= 1584) {
-            if (year % 400 == 0) {
-                System.out.println(year + " год является високосным.");
-            } else if (year % 100 == 0) {
+        if (year >= 1584 && (year % 100 != 0 || year % 4 == 0)) {
+            System.out.println(year + " год является високосным.");
+            if (year % 100 == 0) {
                 System.out.println(year + " год не является високосным.");
-            } else if (year % 4 == 0) {
-                System.out.println(year + " год является високосным.");
-            } else System.out.println(year + " год не является високосным.");
+            }
         } else {
-            System.out.println("Правило високосного года еще не введено!");
+            System.out.println(year + " год не является високосным.");
         }
+
         /*Задача 4.
         В банке для клиентов организовывается доставка карт на дом. Чтобы известить клиента о том, когда будет доставлена его карта, нужно знать расстояние от офиса до адреса доставки.
         Правила доставки такие:
@@ -86,15 +84,14 @@ public class Main {
         System.out.print("Задача 4 \nПожалуйcтва, введите расстояние до вашего дома в километрах: ");
         //Ввожу переменную deliveryDistance через ввод с клавиатуры.
         int deliveryDistance = scanner.nextInt();
-        int deliveryTime = 0;
+        int deliveryTime = 1;
         if (deliveryDistance <= 20) {
-            deliveryTime = 1;
             System.out.println("Для расстояния " + deliveryDistance + " потребуется " + deliveryTime + " день.");
-        } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
-            deliveryTime = deliveryTime + 1;
+        } else if (deliveryDistance > 20 && deliveryDistance < 60) {
+            deliveryTime = 2;
             System.out.println("Для расстояния " + deliveryDistance + " потребуется " + deliveryTime + " дня.");
-        } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
-            deliveryTime = deliveryTime + 2;
+        } else if (deliveryDistance >= 60 && deliveryDistance <= 100) {
+            deliveryTime = 3;
             System.out.println("Для расстояния " + deliveryDistance + " потребуется " + deliveryTime + " дня.");
         } else {
             System.out.println("Свыше 100 км доставка не осуществляется.");
@@ -106,29 +103,21 @@ public class Main {
         System.out.print("Задача 5 \nПожалуйcтва, введите номер месяца, который вы хотите проверить: ");
         //Ввожу переменную monthNumber через ввод с клавиатуры.
         int monthNumber = scanner.nextInt();
-        switch (monthNumber){
-            case 1:
-            case 2:
-            case 12:
-                System.out.println("Месяц с номером "+monthNumber+" пренадлежить к сезону 'Зима'.");
+        switch (monthNumber) {
+            case 1, 2, 12:
+                System.out.println("Месяц с номером " + monthNumber + " пренадлежить к сезону 'Зима'.");
                 break;
-            case 3:
-            case 4:
-            case 5:
-                System.out.println("Месяц с номером "+monthNumber+" пренадлежить к сезону 'Весна'.");
+            case 3, 4, 5:
+                System.out.println("Месяц с номером " + monthNumber + " пренадлежить к сезону 'Весна'.");
                 break;
-            case 6:
-            case 7:
-            case 8:
-                System.out.println("Месяц с номером "+monthNumber+" пренадлежить к сезону 'Лето'.");
+            case 6, 7, 8:
+                System.out.println("Месяц с номером " + monthNumber + " пренадлежить к сезону 'Лето'.");
                 break;
-            case 9:
-            case 10:
-            case 11:
-                System.out.println("Месяц с номером "+monthNumber+" пренадлежить к сезону 'Осень'.");
+            case 9, 10, 11:
+                System.out.println("Месяц с номером " + monthNumber + " пренадлежить к сезону 'Осень'.");
                 break;
             default:
-                System.out.println("Месяца с номером "+monthNumber+" не существует.");
+                System.out.println("Месяца с номером " + monthNumber + " не существует.");
                 break;
         }
     }
