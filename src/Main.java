@@ -62,11 +62,8 @@ public class Main {
         Небольшая справка: високосным является каждый четвертый год, но не является каждый сотый. Также високосным является каждый четырехсотый год. Год должен быть больше, чем 1584 (в котором был введен високосный год).*/
         System.out.print("Задача 3 \nПожалуйcтва, введите интересующий вас год больше 1584: ");
         int year = scanner.nextInt();
-        if (year >= 1584 && (year % 100 != 0 || year % 4 == 0)) {
+        if ((year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))) {
             System.out.println(year + " год является високосным.");
-            if (year % 100 == 0) {
-                System.out.println(year + " год не является високосным.");
-            }
         } else {
             System.out.println(year + " год не является високосным.");
         }
@@ -85,7 +82,7 @@ public class Main {
         //Ввожу переменную deliveryDistance через ввод с клавиатуры.
         int deliveryDistance = scanner.nextInt();
         int deliveryTime = 1;
-        if (deliveryDistance <= 20) {
+        if (deliveryDistance > 0 && deliveryDistance <= 20) {
             System.out.println("Для расстояния " + deliveryDistance + " потребуется " + deliveryTime + " день.");
         } else if (deliveryDistance > 20 && deliveryDistance < 60) {
             deliveryTime = 2;
